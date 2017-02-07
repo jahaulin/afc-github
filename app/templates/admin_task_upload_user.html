@@ -1,0 +1,39 @@
+{% extends 'layout/mobile.html' %}
+{% block content %}
+
+<h2>{{ _('Upload user') }}</h2>
+<form role="form" action="{{ url_for('admin_task_upload_user') }}" method="post" enctype="multipart/form-data" class="form-horizontal">
+    {% for field in form %} 
+        {% if field.type not in ["SubmitField", "CSRFTokenField", "HiddenField"] %}
+            <div class="form-group form-inline">
+                {% if field.type in ["BooleanField"] %}
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <div class="checkbox checkbox-primary">
+                            {{ field(class="form-control") }} {{ field.label() }}
+                        </div>
+                    </div>
+                {% else %}
+                    {{ field.label(class="col-sm-2 control-label") }}
+                    <div class="col-sm-10">{{ field(class="form-control") }}</div>
+                {% endif %}
+            </div>
+        {% else %}
+            <div class="form-group form-inline">
+                {% if field.type in ["SubmitField"] %}
+                    <div class="col-sm-offset-2 col-sm-10">{{ field(class="form-control btn btn-primary") }}</div>
+                {% else %}
+                    <div class="col-sm-offset-2 col-sm-10">{{ field(class="form-control") }}</div>
+                {% endif %}
+            </div>
+        {% endif %}
+    {% endfor %}
+    <div class="form-group form-inline">
+        <div class="col-sm-offset-2 col-sm-10">
+            <a href="{{ url_for('static',  filename='data/user.csv') }}">{{ _('Download user template') }}</a>
+        </div>
+        <div class="col-sm-offset-2 col-sm-10">
+            <a href="https://std.tn.edu.tw/sis/" target="_blank">{{ _('Download from student system') }}</a>
+        </div>
+    </div>
+</form>
+{% endblock %}

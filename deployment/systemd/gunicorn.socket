@@ -1,0 +1,9 @@
+[Unit]
+Description=Gunicorn Socket
+
+[Socket]
+ListenStream=/run/gunicorn/socket
+ListenStream=0.0.0.0:5000
+
+[Install]
+WantedBy=sockets.target

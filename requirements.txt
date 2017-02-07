@@ -1,0 +1,12 @@
+alembic
+Flask
+Flask_Babel
+Flask_Login
+Flask_Migrate
+Flask_Script
+Flask_SQLAlchemy
+Flask_WTF
+pytz
+SQLAlchemy
+Werkzeug
+WTForms

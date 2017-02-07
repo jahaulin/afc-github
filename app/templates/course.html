@@ -1,0 +1,138 @@
+{% extends 'layout/mobile.html' %}
+{% block content %}
+<h2>{{ _('Course') }}</h2>
+
+{% if not g.user.is_authenticated %}
+
+{% else %}
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{ _('Course') }}</h3>
+    </div>
+    <!-- panel-heading -->
+
+    <div class="panel-body">
+        <div class="media-list">
+        {% for c in courses %}
+
+            <div class="media" id="{{ c.cid }}">
+                 <div class="media-left">
+                    <img class="media-object img-rounded" src="{{ url_for('static', filename='images/flaticons/') }}{{ c.name | iconfilter }}.png">
+                </div>
+                <div class="media-body">
+                    <h3 class="media-heading">{{ c.name }}</h3>
+                    <dl class="dl-horizontal">
+                        <dt>課程資訊</dt>
+                        <dd>
+                            {{ c.classroom }} /
+                            <span class="text-info">{{ c.datetime | coursetimefilter }}</span>
+                        </dd>
+                        <dt>師資</dt>
+                        <dd>
+                            {{ c.teacher }} ({{ c.teacher_tag }}) /
+                            {{ c.teacher_phone }}
+                        </dd>
+                        <dt>資格限制</dt>
+                        <dd>
+                            {{ _('Grades') }} <span class="text-info">{{ c.grades | studenttagfilter }}</span> /
+                            NT${{ c.price | currencyfilter }}
+                        </dd>
+                        <dt>課程備註</dt>
+                        <dd>
+                            {{ c.description }}
+                        </dd>
+                    </dl>
+                </div>
+                <div class="media-right text-nowrap">
+                {% if c.state == 1 %}
+                    <p class="text-danger">{{ _('Suspended') }}</p>
+                {% else %}
+                    {% if (g.user.student_grade | string) in c.grades or (g.user.student_tag | string) in c.grades %}
+                        {% if selected[c.cid] %}
+                            <a class="deselection btn btn-danger btn-sm" href="{{ url_for('delete_selection', uid=g.user.uid, cid=c.cid) }}" >{{ _('Deselect') }}</a>
+                        {% else %}
+                            <a class="selection btn btn-primary btn-sm" href="{{ url_for('create_selection', uid=g.user.uid, cid=c.cid) }}" >{{ _('Select') }}</a>
+                        {% endif %}
+                    {% else %}
+                        <p class="text-danger">{{ _('Not applied') }}</p>
+                    {% endif %}
+                {% endif %}
+                <br><span class="text-primary lead">{{ c.selections.count() }}</span> <span class="text-info">({{ c.lowbound }} ~ {{ c.upbound }})</span>
+                </div>
+            </div>
+
+        {% endfor %}
+        </div>
+    </div>
+    <!-- panel-body -->
+
+</div>
+
+<script type="text/javascript">
+jQuery.noConflict();
+(function($) {
+    $(function() {
+        // data table for sorting
+        $('#datatable').DataTable({
+            "paging": false,
+            "info": false, 
+            "language": {
+                search: '{{ _("Search in table:" )}}'
+            }
+        });
+
+        // confirm to select course
+        $('.selection').click(function(e) {
+            var url = $(this).attr('href');
+            e.preventDefault();
+            bootbox.confirm({
+                message: "{{ _('Are you sure to select this course?') }}",
+                buttons: {
+                    confirm: {
+                        label: "{{ _('Yes') }}",
+                        className: 'btn-primary'
+                    },
+                    cancel: {
+                        label: "{{ _('No') }}",
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function(result) {
+                    if (result) {
+                        window.location = url;
+                    }
+                }
+            });
+        });
+
+        // confirm to deselect course
+        $('.deselection').click(function(e) {
+            var url = $(this).attr('href');
+            e.preventDefault();
+            bootbox.confirm({
+                message: "{{ _('Are you sure to deselect this course?') }}",
+                buttons: {
+                    confirm: {
+                        label: "{{ _('Yes') }}",
+                        className: 'btn-primary'
+                    },
+                    cancel: {
+                        label: "{{ _('No') }}",
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function(result) {
+                    if (result) {
+                        window.location = url;
+                    }
+                }
+            });
+        });
+
+    });
+})(jQuery);
+</script>
+
+{% endif %}
+
+{% endblock %}

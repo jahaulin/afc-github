@@ -1,0 +1,17 @@
+@media print {
+    a[href]:after {
+        content: none;
+    }
+    .noprint {
+        display: none;
+    }
+    table,
+    tr,
+    td,
+    th {
+        border: 2px solid black;
+        border-left: 2px solid black;
+        border-right: 2px solid black;
+        border-collapse: collapse;
+    }
+}

@@ -1,0 +1,151 @@
+{% extends 'layout/mobile.html' %}
+
+{% block content %}
+
+<h2>{{ _('Selected courses') }}</h2>
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{ _('Selection') }}</h3>
+    </div>
+    <!-- panel-heading -->
+
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table id="datatable" class="table table-hover table-striped table-bordered">
+                <thead>
+                    <th>{{ _('No.') }}</th>
+                    <th>{{ _('Course') }}</th>
+                    <th>{{ _('Date time') }}</th>
+                    <th>{{ _('Price') }}</th>
+                    <th>{{ _('Order') }}</th>
+                    <th class="noprint">{{ _('Selection') }}</th>
+                </thead>
+                <tbody>
+                    {% set sum = [0] -%}
+                    {% for s in selections -%}
+                    <tr>
+                        <td><a href="{{ url_for('course') }}#{{ s.course_id }}">{{ s.course_id }}</a></td>
+                        <td>{{ s.course.name }}</td>
+                        <td>{{ s.course.datetime | coursetimefilter }}</td>
+                        <td class="text-right">
+                            {% if valids[s.course_id] -%}
+                                NT${{ s.course.price | currencyfilter }}
+                            {% else -%}
+                                <s>NT${{ s.course.price | currencyfilter }}</s>
+                            {% endif -%}
+                        </td>
+                        <td>
+                            <span class="lead">{{ ranks[s.course_id] }}</span> / {{ counts[s.course_id] }}
+                            &nbsp;<span class="text-info">({{ s.course.lowbound }} ~ {{ s.course.upbound }})</span>
+                            {% if ranks[s.course_id] > s.course.upbound -%}
+                                <br><span class="text-warning">{{ _('Waiting') }} {{ ranks[s.course_id] - s.course.upbound }}</span>
+                            {% endif -%}
+
+                            {% if valids[s.course_id] -%}
+                                {% if sum.append(sum.pop() + s.course.price) -%}{% endif -%}
+                            {% endif -%}
+
+                            {% if s.course.lowbound > counts[s.course_id] -%}
+                                <br><span class="text-warning">{{ _('Insufficient') }}</span>
+                            {% endif -%}
+                        </td>
+                        <td class="noprint">
+                            <a class="deselection btn btn-danger btn-sm" href="{{ url_for('delete_selection', uid=g.user.uid, cid=s.course_id) }}">{{ _('Deselect') }}</button>
+                        </td>
+                    </tr>
+                    {% endfor -%}
+
+                </tbody>
+                </tfoot>
+                    <tr class="success">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td class="text-right">NT${{ sum[0] | default(0) | currencyfilter }}</td>
+                        <td></td>
+                        <td class="noprint"></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    <!-- panel-body -->
+
+</div>
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{ _('Timetable') }}</h3>
+    </div>
+    <!-- panel-heading -->
+
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table id="timetable" class="table table-hover table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>{{ _('Mon') }}</th>
+                        <th>{{ _('Tue') }}</th>
+                        <th>{{ _('wed') }}</th>
+                        <th>{{ _('Thu') }}</th>
+                        <th>{{ _('Fri') }}</th>
+                        <th>{{ _('Sat') }}</th>
+                        <th>{{ _('Sun') }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        {% for k, v in weeks.items() %}
+                            <td>
+                                {% for x in v %}
+                                    {{ x | coursetimefilter }}<br>
+                                {% endfor %}
+                            </td>
+                        {% endfor %}
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <script type="text/javascript">
+        jQuery.noConflict();
+        (function($) {
+            $(function() {
+                $('#datatable').DataTable({
+                    "paging": false,
+                    "info": false,
+                    "language": {
+                        search: '{{ _("Search in table:" )}}'
+                    }
+                });
+
+                $('.deselection').click(function(e) {
+                    var url = $(this).attr('href');
+                    e.preventDefault();
+                    bootbox.confirm({
+                        message: "{{ _('Are you sure to deselect this course?') }}", 
+                        buttons: {
+                            confirm: {
+                                label: "{{ _('Yes') }}", 
+                                className: 'btn-primary'
+                            }, 
+                            cancel: {
+                                label: "{{ _('No') }}", 
+                                className: 'btn-danger'
+                            }
+                        }, 
+                        callback: function(result) {
+                            if (result) {
+                                window.location = url;
+                            }
+                        }
+                    });
+                });
+            });
+        })(jQuery);
+        </script>
+    </div>
+    <!-- panel-body -->
+
+</div>
+
+{% endblock %}

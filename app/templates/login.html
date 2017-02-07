@@ -1,0 +1,43 @@
+{% extends 'layout/mobile.html' %}
+{% block content %}
+
+<h2>{{ _('Login') }}</h2>
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{ _('Login') }}</h3>
+    </div>
+    <!-- panel-heading -->
+
+    <div class="panel-body">
+        <!-- recaptcha -->
+        {% for error in form.recaptcha.errors %}
+            <p class="text-danger">{{ error }}</p>
+        {% endfor %}
+        <!-- recaptcha -->
+
+        <form action="{{ url_for('login') }}" method="post" class="form-horizontal">
+            {% for field in form %}
+
+            {% if field.type not in ["SubmitField", "CSRFTokenField", "HiddenField"] %}
+                <div class="form-group form-inline">
+                    {{ field.label(class="col-sm-2 control-label") }}
+                    <div class="col-sm-10">{{ field(class="form-control") }}</div>
+                </div>
+            {% else %}
+                <div class="form-group form-inline">
+                    {% if field.type in ["SubmitField"] %}
+                        <div class="col-sm-offset-2 col-sm-10">{{ field(class="form-control btn btn-primary") }}</div>
+                    {% else %}
+                        <div class="col-sm-offset-2 col-sm-10">{{ field(class="form-control") }}</div>
+                    {% endif %}
+                </div>
+            {% endif %}
+
+            {% endfor %}
+        </form>
+    </div>
+    <!-- panel-heading -->
+</div>
+
+{% endblock %}

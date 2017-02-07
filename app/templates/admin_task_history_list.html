@@ -1,0 +1,57 @@
+{% extends 'layout/mobile.html' %}
+{% block content %}
+
+<h2>{{ _('History') }}</h2>
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{ _('History') }}</h3>
+    </div>
+    <!-- panel-heading -->
+
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table id="datatable" class="table table-hover table-striped">
+                <thead>
+                    <th>{{ _('No.') }}</th>
+                    <th>{{ _('Date time') }}</th>
+                    <th>{{ _('User') }}</th>
+                    <th>{{ _('Message') }}</th>
+                    <th>{{ _('IP') }}</th>
+                </thead>
+                <tbody>
+                    {% for h in history %}
+                    <tr>
+                        <td>{{ h.hid }}</td>
+                        <td>{{ h.timestamp | datetimefilter }}</td>
+                        <td>{{ h.user_id }} ({{ h.user.student_name }})</td>
+                        <td>{{ h.message }}</td>
+                        <td>{{ h.ip }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- panel-body -->
+
+</div>
+
+<script type="text/javascript">
+jQuery.noConflict();
+(function($) {
+    $(function() {
+        // data table for sorting
+        $('#datatable').DataTable({
+            "paging": true,
+            "info": false, 
+            "order": [[0, "desc"]],
+            "language": {
+                search: '{{ _("Search in table:" )}}'
+            }
+        });
+
+    });
+})(jQuery);
+</script>
+
+{% endblock %}

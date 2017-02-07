@@ -1,0 +1,71 @@
+{% extends 'layout/mobile.html' %}
+{% block content %}
+<h2>{{ _('Task') }}</h2>
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{ _('Statistics') }}</h3>
+    </div>
+    <!-- panel-heading -->
+
+    <div class="panel-body">
+        <form action="" method="" class="form-horizontal">
+        {% for u in users %}
+            <div class="form-group">
+                <label class="col-sm-2 control-label">{{ u[0] }}</label>
+                <div class="col-sm-10"><p class="form-control-static">{{ u[1] }}</p></div>
+            </div>
+        {% endfor %}
+        </form>
+
+        <form action="" method="" class="form-horizontal">
+        {% for k, v in stats.items() %}
+            <div class="form-group">
+                <label class="col-sm-2 control-label">{{ k }}</label>
+                <div class="col-sm-10"><p class="form-control-static">{{ v }}</p></div>
+            </div>
+        {% endfor %}
+        </form>
+    </div>
+    <!-- panel-body -->
+</div>
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{ _('Tools') }}</h3>
+    </div>
+    <!-- panel-heading -->
+
+    <div class="panel-body">
+        <div class="btn-group" role="group" aria-label="...">
+            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ _('Upload') }}
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="{{ url_for('admin_task_upload_course') }}">{{ _('Upload course') }}</a></li>
+                <li><a href="{{ url_for('admin_task_upload_user') }}">{{ _('Upload user') }}</a></li>
+            </ul>
+        </div>
+        <div class="btn-group" role="group" aria-label="...">
+            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ _('History') }}
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="{{ url_for('admin_task_history_list') }}">{{ _('History list') }}</a></li>
+            </ul>
+        </div>
+        <div class="btn-group" role="group" aria-label="...">
+            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ _('Payment') }}
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="{{ url_for('admin_task_payment') }}">{{ _('Payment list') }}</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- panel-body -->
+</div>
+{% endblock %}

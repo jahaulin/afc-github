@@ -1,0 +1,17 @@
+[Unit]
+Description=Gunicorn Daemon
+Requires=gunicorn.socket
+After=network.target
+
+[Service]
+PIDFile=/run/gunicorn/pid
+User=admin
+Group=admin
+WorkingDirectory=/home/admin/afc
+ExecStart=/home/admin/.local/bin/gunicorn --pid /run/gunicorn/pid app:app -w 4 -b '0.0.0.0:5000'
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s TERM $MAINPID
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

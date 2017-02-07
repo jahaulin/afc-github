@@ -1,0 +1,21 @@
+{% extends 'layout/mobile.html' %}
+{% block content %}
+<h2>{{ _('Error') }}</h2>
+
+<div class="panel panel-danger">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{ error_title }}</h3>
+    </div>
+    <!-- panel-heading -->
+
+    <div class="panel-body">
+        <ul>
+        {% for error in errors %}
+            <li>{{ error }}</li>
+        {% endfor %}
+        </ul>
+    </div>
+    <!-- panel-body -->
+
+</div>
+{% endblock %}

@@ -1,0 +1,100 @@
+{% extends 'layout/mobile.html' %}
+{% block content %}
+
+<h2>{{ _('Course list') }}</h2>
+<form action="{{ url_for('admin_course_list') }}" method="post" class="form-horizontal">
+    {% for field in csform %} 
+        {% if field.type not in ["SubmitField", "CSRFTokenField", "HiddenField"] %}
+            <div class="form-group form-inline">
+                {{ field.label(class="col-sm-2 control-label") }}
+                <div class="col-sm-10">{{ field(class="form-control") }}</div>
+            </div>
+        {% else %}
+            <div class="form-group form-inline">
+                {% if field.type in ["SubmitField"] %}
+                    <div class="col-sm-offset-2 col-sm-10">{{ field(class="form-control btn btn-primary") }}</div>
+                {% else %}
+                    <div class="col-sm-offset-2 col-sm-10">{{ field(class="form-control") }}</div>
+                {% endif %}
+            </div>
+        {% endif %}
+    {% endfor %}
+</form>
+
+<script type="text/javascript">
+jQuery.noConflict();
+(function($) {
+    $(function() {
+        $('#cid').on('change', function() {
+            var cid = $(this).val();
+            window.location =
+                "{{ url_for('admin_course_list') }}" + '/' +
+                cid;
+        });
+
+        // data table for sorting
+        $('#datatable').DataTable({
+            "paging": false,
+            "info": false,
+            "language": {
+                search: '{{ _("Search in table:" )}}'
+            }
+        });
+    });
+})(jQuery);
+</script>
+
+{% if selections %}
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{ _('Student list') }}</h3>
+    </div>
+    <!-- panel-title -->
+
+    <div class="panel-body">
+        <div class="table-responsive">
+            <dl class="dl-horizontal">
+                <dt>{{ _('Course') }}</dt><dd>{{ course.cid }} - {{ course.name }}</dd>
+                <dt>{{ _('Lower limit') }}</dt><dd>{{ course.lowbound | default(0, true) }}</dd>
+                <dt>{{ _('Upper limit') }}</dt><dd>{{ course.upbound | default(0, true) }}</dd>
+            </dl>
+            <table id="datatable" class="table table-hover table-striped table-bordered">
+                <thead>
+                    <th>{{ _('No.') }}</th>
+                    <th>{{ _('Grade') }}</th>
+                    <th>{{ _('Class') }}</th>
+                    <th>{{ _('Number') }}</th>
+                    <th>{{ _('Name') }}</th>
+                    <th>{{ _('Order') }}</th>
+                    <th>{{ _('Parent name') }}</th>
+                    <th>{{ _('Parent phone') }}</th>
+                </thead>
+                <tbody>
+                    {% for s in selections %}
+                    <tr>
+                        <td>{{ s.sid }}</td>
+                        <td>{{ s.user.student_grade }}</td>
+                        <td>{{ s.user.student_class }}</td>
+                        <td>{{ s.user.student_number }}</td>
+                        <td>{{ s.user.student_name }}</td>
+
+                        {% if loop.index > course.upbound %}
+                            <td>{{ _('Waiting') }} {{ loop.index - course.upbound }}</td>
+                        {% else %}
+                            <td>{{ loop.index }}</td>
+                        {% endif %}
+
+                        <td>{{ s.user.parent_name | default('', true) }}</td>
+                        <td>{{ s.user.parent_phone | default('', true) }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- panel-body -->
+
+</div>
+{% endif %}
+
+{% endblock %}

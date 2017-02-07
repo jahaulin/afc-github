@@ -1,0 +1,3 @@
+{% macro whoami(repr) %}
+{{- repr | replace("<TemplateReference '", "") | replace(".html'>", "") -}}
+{% endmacro %}

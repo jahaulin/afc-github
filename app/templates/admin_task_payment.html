@@ -1,0 +1,87 @@
+{% extends 'layout/mobile.html' %}
+{% block content %}
+
+
+{% for payment in payments %}
+
+{% set user = payment.user %}
+{% set selections = payment.selections %}
+{% set ranks = payment.ranks %}
+{% set weeks = payment.weeks %}
+
+<h3 class="text-center">{{ config['SCHOOL_NAME'] }}課後社團繳費通知單</h3>
+<h4>
+    {{ _('Grade')}}: {{ user.student_grade }} &nbsp;
+    {{ _('Class')}}: {{ user.student_class }} &nbsp;
+    {{ _('Number')}}: {{ user.student_number }} &nbsp;
+    {{ _('Name') }}: {{ user.student_name }} &nbsp;
+    {{ _('Tag') }}: {{ user.student_tag | studenttagfilter }}
+</h4>
+
+<div class="panel panel-info" id="{{ user.uid }}_1">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{ _('Selected courses') }}</h3>
+    </div>
+    <!-- panel-heading -->
+
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table table-hover table-striped table-bordered">
+                <tr>
+                    <th>{{ _('Course') }}</th>
+                    <th>{{ _('Date time') }}</th>
+                    <th>{{ _('Price') }}</th>
+                </tr>
+                {% for s in selections %}
+                <tr>
+                    <td>{{ s.course.name }}</td>
+                    <td>{{ s.course.datetime | coursetimefilter }}</td>
+                    <td class="text-right">NT${{ s.course.price | currencyfilter }}</td>
+                </tr>
+                {% endfor %}
+
+                <tr class="success">
+                    <td></td>
+                    <td></td>
+                    <td class="text-right">{{ _('Total price') }} NT${{ selections | sum(attribute='course.price') | default(0) | currencyfilter }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <!-- panel-body -->
+
+</div>
+
+<!-- split -->
+<p style="width: 100%; border-bottom: 2px dashed black; text-align: center">
+    <span style="background-color: #FFFFFF; padding: 0 10px;">
+        {{ _('Crop marks') }}
+    </span>
+</p>
+<!-- split -->
+
+<h3 class="text-center">收執聯</h3>
+<h4>
+    {{ _('Grade')}}: {{ user.student_grade }} &nbsp;
+    {{ _('Class')}}: {{ user.student_class }} &nbsp;
+    {{ _('Number')}}: {{ user.student_number }} &nbsp;
+    {{ _('Name') }}: {{ user.student_name }}
+</h4>
+
+<div class="panel panel-info" id="{{ user.uid }}_2">
+</div>
+<script type="text/javascript">
+jQuery.noConflict();
+(function($) {
+    $(function() {
+        $('#{{ user.uid }}_2').html($('#{{ user.uid }}_1').html());
+    });
+})(jQuery);
+</script>
+<h4 class="text-center">收費者</h4>
+
+<p style="page-break-after:always;"></p>
+
+{% endfor %}
+
+{% endblock %}

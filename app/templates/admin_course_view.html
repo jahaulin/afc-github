@@ -1,0 +1,119 @@
+{% extends 'layout/mobile.html' %}
+{% block content %}
+
+<h2>{{ _('Course view') }}</h2>
+<form action="{{ url_for('admin_course_view') }}" method="post" class="form-horizontal">
+    {% for field in csform %} 
+        {% if field.type not in ["SubmitField", "CSRFTokenField", "HiddenField"] %}
+            <div class="form-group form-inline">
+                {{ field.label(class="col-sm-2 control-label") }}
+                <div class="col-sm-10">{{ field(class="form-control") }}</div>
+            </div>
+        {% else %}
+            <div class="form-group form-inline">
+                {% if field.type in ["SubmitField"] %}
+                    <div class="col-sm-offset-2 col-sm-10">{{ field(class="form-control btn btn-primary") }}</div>
+                {% else %}
+                    <div class="col-sm-offset-2 col-sm-10">{{ field(class="form-control") }}</div>
+                {% endif %}
+            </div>
+        {% endif %}
+    {% endfor %}
+</form>
+
+<script type="text/javascript">
+jQuery.noConflict();
+(function($) {
+    $(function() {
+        $('#cid').on('change', function() {
+            var cid = $(this).val();
+            window.location = "{{ url_for('admin_course_view') }}" + '/' + cid;
+        });
+    });
+})(jQuery);
+</script>
+
+{% if ceform %}
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{ _('Course edit') }}</h3>
+    </div>
+    <!-- panel-heading -->
+
+    <div class="panel-body">
+        <form action="{{ url_for('admin_course_edit') }}" method="post" class="form-horizontal">
+
+        {% for field in ceform %}
+            {% if field.type not in ["SubmitField", "CSRFTokenField", "HiddenField"] %}
+                {% if field.type in ["TextAreaField"] %}
+                <div class="form-group">
+                {% else %}
+                <div class="form-group form-inline">
+                {% endif %}
+                    {{ field.label(class="col-sm-2 control-label") }}
+                    <div class="col-sm-10">{{ field(class="form-control") }}</div>
+                </div>
+            {% else %}
+                <div class="form-group form-inline">
+                    {% if field.type in ["SubmitField"] %}
+                        <div class="col-sm-offset-2 col-sm-10">{{ field(class="form-control btn btn-primary") }}</div>
+                    {% else %}
+                        <div class="col-sm-offset-2 col-sm-10">{{ field(class="form-control") }}</div>
+                    {% endif %}
+                </div>
+            {% endif %}
+        {% endfor %}
+
+        </form>
+    </div>
+    <!-- panel-body -->
+
+</div>
+<script type="text/javascript">
+jQuery.noConflict();
+(function($) {
+    $(function() {
+        // grades lookup table
+        var grades_table = {
+            '1': '{{ _("1st grade") }}',
+            '2': '{{ _("2nd grade") }}',
+            '3': '{{ _("3rd grade") }}',
+            '4': '{{ _("4th grade") }}',
+            '5': '{{ _("5th grade") }}',
+            '6': '{{ _("6th grade") }}',
+            'D': '{{ _("Dance class") }}',
+            'K': '{{ _("Kindergarten") }}'
+        };
+
+        // init checkbox
+        var checkbox = $('<div id="checkbox"></div>');
+        for (var key in grades_table) {
+            $(checkbox).append('<label class="checkbox-inline"><input class="checkbox_grade" id="grade_' + key + '" type="checkbox" value="' + key + '">' + grades_table[key] + '</label>');
+        }
+
+        // insert after
+        $('#grades').after(checkbox);
+
+        //checked
+        var grades = $('#grades').val();
+        for (var i = 0; i < grades.length; i++) {
+            var g = grades[i];
+            $('#grade_' + g).attr('checked', 'checked');
+        }
+
+        // get new grades
+        $('input.checkbox_grade').on('change', function() {
+            var result = '';
+            for (var key in grades_table) {
+                if ($('#grade_' + key).is(':checked')) {
+                    result += key;
+                }
+            }
+            $('#grades').val(result);
+        });
+    });
+})(jQuery);
+</script>
+{% endif %}
+
+{% endblock %}
