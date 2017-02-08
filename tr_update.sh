@@ -1,6 +1,6 @@
 #!/bin/sh
 
-pybabel extract -F babel.cfg -k lazy_gettext -o messages.pot ./app
+pybabel extract -F babel.cfg -k lazy_gettext -o messages.pot .
 pybabel update --previous -l zh -i messages.pot -o app/translations/zh/LC_MESSAGES/messages.po
 vim app/translations/zh/LC_MESSAGES/messages.po
 pybabel compile -d app/translations/
