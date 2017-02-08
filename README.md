@@ -91,7 +91,57 @@ user.default_password = "PaSSwoRD"  # 管理者密碼
  * Debugger pin code: 316-959-504
 ```
 
-### 使用者、課程設定
+### 編輯使用者
+以 JSON 格式匯出使用者資料，透過文字編輯器進行修改。
+```bash
+# cd afc-github/
+# ./app/scripts/db_user.py export -u 0 | json_reformat > /tmp/user
+# vim /tmp/user
+```
+```
+{
+    "default_password": "PaSSwoRD",
+    "parent_name": "管媽媽",
+    "parent_phone": "06-2133007#812",
+    "password": "",
+    "student_class": 6,
+    "student_grade": 6,
+    "student_name": "管理者",
+    "student_number": 99,
+    "student_tag": "N",
+    "uid": 0
+}
+```
+修改存檔後，再度以 JSON 格式匯入，更新使用者資料。
+```bash
+# cat /tmp/user | ./app/scripts/db_user.py update
+```
+
+### 匯入使用者
+僅附加使用者，可作為增加使用者。
+```bash
+# ./app/scripts/import_user.py import_user -f /tmp/user.csv
+```
+取代既有使用者資料，可作為更新使用。
+```bash
+# ./app/scripts/import_user.py import_user -f /tmp/user.csv -r
+```
+
+### 匯出課程
+```bash
+# cd afc-github/
+# ./app/scripts/export_course.py export_course -f /tmp/courses.csv
+```
+
+### 匯入課程
+僅附加課程，可作為增加課程。
+```bash
+# ./app/scripts/import_course.py import_course -f /tmp/course.csv
+```
+取代既有課程資料，可作為更新使用。
+```bash
+# ./app/scripts/import_course.py import_course -f /tmp/course.csv -r
+```
 
 ### 新增選課測試資料
 
