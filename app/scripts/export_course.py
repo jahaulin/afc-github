@@ -47,11 +47,11 @@ def export_course(filename=''):
                 '收費價格': c.price,
                 '教師': c.teacher.encode("UTF-8"),
                 '教師說明': c.teacher_tag.encode("UTF-8"),
-                '教師聯絡電話': c.teacher_phone,
-                '開課年級': c.grades,
+                '教師聯絡電話': c.teacher_phone.encode("UTF-8"),
+                '開課年級': c.grades.encode("UTF-8"),
                 '下限人數': c.lowbound,
                 '上限人數': c.upbound,
-                '上課日期時間': c.datetime,
+                '上課日期時間': c.datetime.encode("UTF-8"),
             }
             writer.writerow(row)
 
