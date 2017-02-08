@@ -6,9 +6,16 @@
   - GNU/Linux，如 CentOS、Fedora、Debian 等
   - SQLite3
 ```bash
-# dnf install sqlite
+# sudo dnf install sqlite
+OR
+# sudo apt-get install sqlite
 ```
   - Python 2.7 以上，及如下模組
+```bash
+# sudo dnf install python-pip
+OR
+# sudo apt-get install python-pip
+```
 ```
 alembic
 Flask
