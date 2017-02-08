@@ -9,6 +9,7 @@
 # sudo dnf install sqlite
 OR
 # sudo apt-get install sqlite
+```
   - Python Babel
 ```bash
 # sudo dnf install babel
@@ -88,6 +89,10 @@ user.default_password = "PaSSwoRD"  # 管理者密碼
 ```bash
 # cd afc-github/
 # ./tr_update.sh
+```
+pybabel 執行如有錯誤，建議先更新 setuptools。
+```bash
+# pip install --upgrade --user setuptools
 ```
 
 ### 測試執行
