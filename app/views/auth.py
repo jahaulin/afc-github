@@ -52,6 +52,10 @@ def before_request():
 '''
 
 
+def error_page(error_title=lazy_gettext('Error'), errors=[]):
+    return render_template("error.html", error_title=error_title, errors=errors)
+
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if g.user and g.user.is_authenticated:
@@ -75,7 +79,7 @@ def login():
         stu_auth = StudentAuthenticator(
             student_grade=student_grade, student_class=student_class, student_number=student_number, password=password)
         if not stu_auth.authenticate():
-            abort(401)
+            return error_page(errors=[lazy_gettext('Invalid Username or Password!'), ])
 
         # authenticated
         user = User.query.filter_by(

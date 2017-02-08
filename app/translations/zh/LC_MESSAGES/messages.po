@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-02-06 22:38+0800\n"
+"POT-Creation-Date: 2017-02-08 08:17+0800\n"
 "PO-Revision-Date: 2014-12-09 13:40+0800\n"
 "Last-Translator: HSIEH, Li-Yi <lyshie@tn.edu.tw>\n"
 "Language: zh\n"
@@ -45,7 +45,7 @@ msgid "Student list"
 msgstr "學生清單"
 
 #: app/templates/admin_course_list.html:57
-#: app/templates/admin_task_payment.html:30 app/templates/course.html:3
+#: app/templates/admin_task_payment.html:31 app/templates/course.html:3
 #: app/templates/course.html:10 app/templates/create_selection.html:15
 #: app/templates/selection.html:17 app/views/admin.py:43 app/views/admin.py:48
 #: app/views/admin.py:196
@@ -69,25 +69,29 @@ msgid "No."
 msgstr "編號"
 
 #: app/templates/admin_course_list.html:64
-#: app/templates/admin_task_payment.html:14 app/templates/user.html:19
+#: app/templates/admin_task_payment.html:14
+#: app/templates/admin_task_payment.html:65 app/templates/user.html:19
 #: app/views/auth.py:21
 msgid "Grade"
 msgstr "年級"
 
 #: app/templates/admin_course_list.html:65
-#: app/templates/admin_task_payment.html:15 app/templates/user.html:24
+#: app/templates/admin_task_payment.html:15
+#: app/templates/admin_task_payment.html:66 app/templates/user.html:24
 #: app/views/auth.py:23
 msgid "Class"
 msgstr "班級"
 
 #: app/templates/admin_course_list.html:66
-#: app/templates/admin_task_payment.html:16 app/templates/user.html:29
+#: app/templates/admin_task_payment.html:16
+#: app/templates/admin_task_payment.html:67 app/templates/user.html:29
 #: app/views/auth.py:25
 msgid "Number"
 msgstr "座號"
 
 #: app/templates/admin_course_list.html:67
-#: app/templates/admin_task_payment.html:17 app/templates/user.html:14
+#: app/templates/admin_task_payment.html:17
+#: app/templates/admin_task_payment.html:68 app/templates/user.html:14
 #: app/views/admin.py:50
 msgid "Name"
 msgstr "姓名"
@@ -193,7 +197,7 @@ msgid "Payment list"
 msgstr "繳費清單"
 
 #: app/templates/admin_task_history_list.html:16
-#: app/templates/admin_task_payment.html:31
+#: app/templates/admin_task_payment.html:32
 #: app/templates/create_selection.html:23 app/templates/selection.html:18
 #: app/views/admin.py:70
 msgid "Date time"
@@ -213,57 +217,28 @@ msgstr "訊息"
 msgid "IP"
 msgstr "來源位址"
 
-#: app/templates/admin_task_payment.html:22
-#: app/templates/create_selection.html:4 app/templates/create_selection.html:8
-#: app/templates/selection.html:8 app/templates/selection.html:21
-#: app/views/admin.py:197
-msgid "Selection"
-msgstr "選擇"
+#: app/templates/admin_task_payment.html:18 app/templates/user.html:34
+#: app/views/admin.py:60
+msgid "Tag"
+msgstr "備註"
 
-#: app/templates/admin_task_payment.html:32 app/templates/selection.html:19
+#: app/templates/admin_task_payment.html:23 app/templates/layout/menu.html:26
+#: app/templates/layout/menu.html:52 app/templates/selection.html:5
+msgid "Selected courses"
+msgstr "已選課程"
+
+#: app/templates/admin_task_payment.html:33 app/templates/selection.html:19
 #: app/views/admin.py:56
 msgid "Price"
 msgstr "費用"
 
-#: app/templates/admin_task_payment.html:45
+#: app/templates/admin_task_payment.html:46
 msgid "Total price"
 msgstr "應繳總費用"
 
-#: app/templates/admin_task_payment.html:57
+#: app/templates/admin_task_payment.html:58
 msgid "Crop marks"
 msgstr "裁切線"
-
-#: app/templates/admin_task_payment.html:64 app/templates/selection.html:78
-msgid "Timetable"
-msgstr "時間表"
-
-#: app/templates/admin_task_payment.html:72 app/templates/selection.html:87
-msgid "Mon"
-msgstr "週一"
-
-#: app/templates/admin_task_payment.html:73 app/templates/selection.html:88
-msgid "Tue"
-msgstr "週二"
-
-#: app/templates/admin_task_payment.html:74 app/templates/selection.html:89
-msgid "wed"
-msgstr "週三"
-
-#: app/templates/admin_task_payment.html:75 app/templates/selection.html:90
-msgid "Thu"
-msgstr "週四"
-
-#: app/templates/admin_task_payment.html:76 app/templates/selection.html:91
-msgid "Fri"
-msgstr "週五"
-
-#: app/templates/admin_task_payment.html:77 app/templates/selection.html:92
-msgid "Sat"
-msgstr "週六"
-
-#: app/templates/admin_task_payment.html:78 app/templates/selection.html:93
-msgid "Sun"
-msgstr "週日"
 
 #: app/templates/admin_task_upload_course.html:32
 msgid "Download course template"
@@ -281,7 +256,7 @@ msgstr "從臺南市學籍子系統下載"
 msgid "Contact information"
 msgstr "聯絡資訊"
 
-#: app/templates/course.html:38 app/templates/create_selection.html:19
+#: app/templates/course.html:37 app/templates/create_selection.html:19
 #: app/views/admin.py:64
 msgid "Grades"
 msgstr "年級"
@@ -316,11 +291,17 @@ msgstr "否"
 msgid "Are you sure to deselect this course?"
 msgstr "您確定要取消選取這個課程？"
 
+#: app/templates/create_selection.html:4 app/templates/create_selection.html:8
+#: app/templates/selection.html:8 app/templates/selection.html:21
+#: app/views/admin.py:197
+msgid "Selection"
+msgstr "選擇"
+
 #: app/templates/create_selection.html:27 app/views/admin.py:72
 msgid "State"
 msgstr "狀態"
 
-#: app/templates/error.html:3 app/views/main.py:48
+#: app/templates/error.html:3 app/views/auth.py:55 app/views/main.py:48
 msgid "Error"
 msgstr "錯誤"
 
@@ -333,16 +314,43 @@ msgstr "注意事項"
 msgid "Login"
 msgstr "登入"
 
-#: app/templates/layout/menu.html:26 app/templates/layout/menu.html:52
-#: app/templates/selection.html:5
-msgid "Selected courses"
-msgstr "已選課程"
-
 #: app/templates/selection.html:49
 msgid "Insufficient"
 msgstr "人數不足"
 
-#: app/templates/user.html:34
+#: app/templates/selection.html:78
+msgid "Timetable"
+msgstr "時間表"
+
+#: app/templates/selection.html:87
+msgid "Mon"
+msgstr "週一"
+
+#: app/templates/selection.html:88
+msgid "Tue"
+msgstr "週二"
+
+#: app/templates/selection.html:89
+msgid "wed"
+msgstr "週三"
+
+#: app/templates/selection.html:90
+msgid "Thu"
+msgstr "週四"
+
+#: app/templates/selection.html:91
+msgid "Fri"
+msgstr "週五"
+
+#: app/templates/selection.html:92
+msgid "Sat"
+msgstr "週六"
+
+#: app/templates/selection.html:93
+msgid "Sun"
+msgstr "週日"
+
+#: app/templates/user.html:39
 msgid "Remote address"
 msgstr "遠端位址"
 
@@ -394,10 +402,6 @@ msgstr "教室"
 #: app/views/admin.py:58
 msgid "Teacher"
 msgstr "教師"
-
-#: app/views/admin.py:60
-msgid "Tag"
-msgstr "備註"
 
 #: app/views/admin.py:62
 msgid "Teacher phone"
@@ -455,11 +459,15 @@ msgstr "1、2、..."
 msgid "Password"
 msgstr "密碼"
 
-#: app/views/auth.py:86
+#: app/views/auth.py:82
+msgid "Invalid Username or Password!"
+msgstr "無效的「使用者名稱」或「密碼」！"
+
+#: app/views/auth.py:90
 msgid "You have logged in!"
 msgstr "您已經登入！"
 
-#: app/views/auth.py:106
+#: app/views/auth.py:110
 msgid "You have logged out!"
 msgstr "您已經登出！"
 
@@ -518,43 +526,4 @@ msgstr "錯誤：您並未選取此課程！"
 #: app/views/main.py:315
 msgid "You have deselected this course."
 msgstr "您取消選取此課程！"
-
-#~ msgid "Please log in to access this page."
-#~ msgstr "請先登入以存取這個頁面。"
-
-#~ msgid "Course cannot be selected!"
-#~ msgstr "無法選取此課程！"
-
-#~ msgid "Grade is not in course!"
-#~ msgstr "年級不適用此課程！"
-
-#~ msgid "You have selected this course!"
-#~ msgstr "您已經選擇此課程了！"
-
-#~ msgid "Date time conflicted!"
-#~ msgstr "日期時間衝突！"
-
-#~ msgid "You did not select this course!"
-#~ msgstr "您並未選取此課程！"
-
-#~ msgid "You have deleted this course."
-#~ msgstr "您刪除了此課程。"
-
-#~ msgid "Chinese name"
-#~ msgstr "中文姓名"
-
-#~ msgid "Order / Upper limit"
-#~ msgstr "順序 / 上限"
-
-#~ msgid "Sufficient"
-#~ msgstr "人數足夠"
-
-#~ msgid "01, 02, ..."
-#~ msgstr "01、02、..."
-
-#~ msgid "No grade"
-#~ msgstr "無年級"
-
-#~ msgid "No class"
-#~ msgstr "無班級"
 
