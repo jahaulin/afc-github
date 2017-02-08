@@ -9,6 +9,11 @@
 # sudo dnf install sqlite
 OR
 # sudo apt-get install sqlite
+  - Python Babel
+```bash
+# sudo dnf install babel
+OR
+# sudo apt-get install python-pybabel
 ```
   - Python 2.7 以上，及如下模組
 ```bash
