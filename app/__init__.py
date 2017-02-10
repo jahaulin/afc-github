@@ -2,7 +2,7 @@
 
 from flask import Flask, request, session
 from flask_login import LoginManager
-from flask_wtf.csrf import CsrfProtect
+from flask_wtf.csrf import CSRFProtect
 from flask_sqlalchemy import SQLAlchemy
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
@@ -41,7 +41,7 @@ login_manager.init_app(app)
 login_manager.login_view = "login"
 login_manager.login_message = app.config['LOGIN_MESSAGE']
 
-csrf = CsrfProtect()
+csrf = CSRFProtect()
 csrf.init_app(app)
 
 db = SQLAlchemy(app)
