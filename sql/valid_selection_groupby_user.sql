@@ -1,18 +1,15 @@
 SELECT
-  cid,
-  total,
-  lowbound,
-  rank,
-  total,
+  uid,
   student_grade,
   student_class,
   student_number,
   student_name,
-  price
+  count(cid) AS noc,
+  sum(price) AS cost
 FROM
   full_selections
 WHERE
   total >= lowbound
   AND rank <= upbound
-ORDER BY
-  cid;
+GROUP BY
+  uid;
