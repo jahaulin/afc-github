@@ -161,9 +161,23 @@ pybabel 執行如有錯誤，建議先更新 setuptools。
 ```
 
 ### 新增選課測試資料
+隨機產生選課測試資料，但仍符合選課條件限制。
+```bash
+./app/scripts/db_create_testdata.py
+```
 
+## 3. 系統封存與一致性檢查
+匯出每一筆完整選課資料(合併 selections、course 與 user 資料表)，並紀錄所有選課人數與選課順序。
+```bash
+# sqlite3 app.db < sql/full_selections.sql
+```
 
-## 3. 參考資訊
+匯出每一筆有效的選課資料(達開課人數下限與正取資格者)，以供核對與收費統計。
+```bash
+# sqlite3 app.db < sql/valid_selection.sql
+```
+
+## 4. 參考資訊
   - HSIEH, Li-Yi @ [臺南市進學國小資訊組](http://www.chps.tn.edu.tw/)
   - All programs are released under the GPL.
   - Free icons from [www.flaticon.com](http://www.flaticon.com/) is licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/)
