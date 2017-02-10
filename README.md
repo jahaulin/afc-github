@@ -177,6 +177,16 @@ pybabel 執行如有錯誤，建議先更新 setuptools。
 # sqlite3 app.db < sql/valid_selection.sql
 ```
 
+統計每個使用者的課程費用支出。
+```bash
+# sqlite3 app.db < ./sql/valid_selection_groupby_user.sql
+```
+
+統計「開課課程總數」、「總上課人次」、「總上課人數」與「總收費金額」等資訊。
+```bash
+# sqlite3 app.db < ./sql/valid_selection_total_cost.sql
+```
+
 ## 4. 參考資訊
   - HSIEH, Li-Yi @ [臺南市進學國小資訊組](http://www.chps.tn.edu.tw/)
   - All programs are released under the GPL.
