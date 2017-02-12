@@ -166,6 +166,11 @@ pybabel 執行如有錯誤，建議先更新 setuptools。
 ./app/scripts/db_create_testdata.py
 ```
 
+### 清除所有選課資料
+```bash
+# sqlite3 app.db < sql/empty_selection.sql
+```
+
 ## 3. 系統封存與一致性檢查
 匯出每一筆完整選課資料(合併 selections、course 與 user 資料表)，並紀錄所有選課人數與選課順序。
 ```bash
@@ -188,7 +193,7 @@ pybabel 執行如有錯誤，建議先更新 setuptools。
 ```
 
 各班級、各年級選課統計資訊。
-```
+```bash
 # sqlite3 app.db < ./sql/valid_selection_groupby_gc.sql
 ```
 

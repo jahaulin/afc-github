@@ -3,7 +3,7 @@
 
 <h2>{{ _('Course view') }}</h2>
 <form action="{{ url_for('admin_course_view') }}" method="post" class="form-horizontal">
-    {% for field in csform %} 
+    {% for field in csform %}
         {% if field.type not in ["SubmitField", "CSRFTokenField", "HiddenField"] %}
             <div class="form-group form-inline">
                 {{ field.label(class="col-sm-2 control-label") }}
@@ -82,7 +82,12 @@ jQuery.noConflict();
             '5': '{{ _("5th grade") }}',
             '6': '{{ _("6th grade") }}',
             'D': '{{ _("Dance class") }}',
-            'K': '{{ _("Kindergarten") }}'
+            'K': '{{ _("Kindergarten") }}',
+            'H': '{{ _("Harmonica") }}',
+            'P': '{{ _("Piano") }}',
+            'X': '{{ _("Dance class & Piano") }}',     // DP
+            'Y': '{{ _("Harmonica & Piano") }}',       // HP
+            'Z': '{{ _("Dance class & Harmonica") }}'  // DH
         };
 
         // init checkbox

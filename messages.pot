@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-02-06 22:38+0800\n"
+"POT-Creation-Date: 2017-02-12 14:36+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,7 +44,7 @@ msgid "Student list"
 msgstr ""
 
 #: app/templates/admin_course_list.html:57
-#: app/templates/admin_task_payment.html:30 app/templates/course.html:3
+#: app/templates/admin_task_payment.html:31 app/templates/course.html:3
 #: app/templates/course.html:10 app/templates/create_selection.html:15
 #: app/templates/selection.html:17 app/views/admin.py:43 app/views/admin.py:48
 #: app/views/admin.py:196
@@ -68,25 +68,29 @@ msgid "No."
 msgstr ""
 
 #: app/templates/admin_course_list.html:64
-#: app/templates/admin_task_payment.html:14 app/templates/user.html:19
+#: app/templates/admin_task_payment.html:14
+#: app/templates/admin_task_payment.html:65 app/templates/user.html:19
 #: app/views/auth.py:21
 msgid "Grade"
 msgstr ""
 
 #: app/templates/admin_course_list.html:65
-#: app/templates/admin_task_payment.html:15 app/templates/user.html:24
+#: app/templates/admin_task_payment.html:15
+#: app/templates/admin_task_payment.html:66 app/templates/user.html:24
 #: app/views/auth.py:23
 msgid "Class"
 msgstr ""
 
 #: app/templates/admin_course_list.html:66
-#: app/templates/admin_task_payment.html:16 app/templates/user.html:29
+#: app/templates/admin_task_payment.html:16
+#: app/templates/admin_task_payment.html:67 app/templates/user.html:29
 #: app/views/auth.py:25
 msgid "Number"
 msgstr ""
 
 #: app/templates/admin_course_list.html:67
-#: app/templates/admin_task_payment.html:17 app/templates/user.html:14
+#: app/templates/admin_task_payment.html:17
+#: app/templates/admin_task_payment.html:68 app/templates/user.html:14
 #: app/views/admin.py:50
 msgid "Name"
 msgstr ""
@@ -148,6 +152,26 @@ msgstr ""
 msgid "Kindergarten"
 msgstr ""
 
+#: app/templates/admin_course_view.html:86
+msgid "Harmonica"
+msgstr ""
+
+#: app/templates/admin_course_view.html:87
+msgid "Piano"
+msgstr ""
+
+#: app/templates/admin_course_view.html:88
+msgid "Dance class & Piano"
+msgstr ""
+
+#: app/templates/admin_course_view.html:89
+msgid "Harmonica & Piano"
+msgstr ""
+
+#: app/templates/admin_course_view.html:90
+msgid "Dance class & Harmonica"
+msgstr ""
+
 #: app/templates/admin_task.html:3 app/templates/layout/menu.html:42
 msgid "Task"
 msgstr ""
@@ -192,7 +216,7 @@ msgid "Payment list"
 msgstr ""
 
 #: app/templates/admin_task_history_list.html:16
-#: app/templates/admin_task_payment.html:31
+#: app/templates/admin_task_payment.html:32
 #: app/templates/create_selection.html:23 app/templates/selection.html:18
 #: app/views/admin.py:70
 msgid "Date time"
@@ -212,56 +236,27 @@ msgstr ""
 msgid "IP"
 msgstr ""
 
-#: app/templates/admin_task_payment.html:22
-#: app/templates/create_selection.html:4 app/templates/create_selection.html:8
-#: app/templates/selection.html:8 app/templates/selection.html:21
-#: app/views/admin.py:197
-msgid "Selection"
+#: app/templates/admin_task_payment.html:18 app/templates/user.html:34
+#: app/views/admin.py:60
+msgid "Tag"
 msgstr ""
 
-#: app/templates/admin_task_payment.html:32 app/templates/selection.html:19
+#: app/templates/admin_task_payment.html:23 app/templates/layout/menu.html:26
+#: app/templates/layout/menu.html:52 app/templates/selection.html:5
+msgid "Selected courses"
+msgstr ""
+
+#: app/templates/admin_task_payment.html:33 app/templates/selection.html:19
 #: app/views/admin.py:56
 msgid "Price"
 msgstr ""
 
-#: app/templates/admin_task_payment.html:45
+#: app/templates/admin_task_payment.html:46
 msgid "Total price"
 msgstr ""
 
-#: app/templates/admin_task_payment.html:57
+#: app/templates/admin_task_payment.html:58
 msgid "Crop marks"
-msgstr ""
-
-#: app/templates/admin_task_payment.html:64 app/templates/selection.html:78
-msgid "Timetable"
-msgstr ""
-
-#: app/templates/admin_task_payment.html:72 app/templates/selection.html:87
-msgid "Mon"
-msgstr ""
-
-#: app/templates/admin_task_payment.html:73 app/templates/selection.html:88
-msgid "Tue"
-msgstr ""
-
-#: app/templates/admin_task_payment.html:74 app/templates/selection.html:89
-msgid "wed"
-msgstr ""
-
-#: app/templates/admin_task_payment.html:75 app/templates/selection.html:90
-msgid "Thu"
-msgstr ""
-
-#: app/templates/admin_task_payment.html:76 app/templates/selection.html:91
-msgid "Fri"
-msgstr ""
-
-#: app/templates/admin_task_payment.html:77 app/templates/selection.html:92
-msgid "Sat"
-msgstr ""
-
-#: app/templates/admin_task_payment.html:78 app/templates/selection.html:93
-msgid "Sun"
 msgstr ""
 
 #: app/templates/admin_task_upload_course.html:32
@@ -280,7 +275,7 @@ msgstr ""
 msgid "Contact information"
 msgstr ""
 
-#: app/templates/course.html:38 app/templates/create_selection.html:19
+#: app/templates/course.html:37 app/templates/create_selection.html:19
 #: app/views/admin.py:64
 msgid "Grades"
 msgstr ""
@@ -315,11 +310,17 @@ msgstr ""
 msgid "Are you sure to deselect this course?"
 msgstr ""
 
+#: app/templates/create_selection.html:4 app/templates/create_selection.html:8
+#: app/templates/selection.html:8 app/templates/selection.html:21
+#: app/views/admin.py:197
+msgid "Selection"
+msgstr ""
+
 #: app/templates/create_selection.html:27 app/views/admin.py:72
 msgid "State"
 msgstr ""
 
-#: app/templates/error.html:3 app/views/main.py:48
+#: app/templates/error.html:3 app/views/auth.py:55 app/views/main.py:48
 msgid "Error"
 msgstr ""
 
@@ -332,16 +333,43 @@ msgstr ""
 msgid "Login"
 msgstr ""
 
-#: app/templates/layout/menu.html:26 app/templates/layout/menu.html:52
-#: app/templates/selection.html:5
-msgid "Selected courses"
-msgstr ""
-
 #: app/templates/selection.html:49
 msgid "Insufficient"
 msgstr ""
 
-#: app/templates/user.html:34
+#: app/templates/selection.html:78
+msgid "Timetable"
+msgstr ""
+
+#: app/templates/selection.html:87
+msgid "Mon"
+msgstr ""
+
+#: app/templates/selection.html:88
+msgid "Tue"
+msgstr ""
+
+#: app/templates/selection.html:89
+msgid "wed"
+msgstr ""
+
+#: app/templates/selection.html:90
+msgid "Thu"
+msgstr ""
+
+#: app/templates/selection.html:91
+msgid "Fri"
+msgstr ""
+
+#: app/templates/selection.html:92
+msgid "Sat"
+msgstr ""
+
+#: app/templates/selection.html:93
+msgid "Sun"
+msgstr ""
+
+#: app/templates/user.html:39
 msgid "Remote address"
 msgstr ""
 
@@ -392,10 +420,6 @@ msgstr ""
 
 #: app/views/admin.py:58
 msgid "Teacher"
-msgstr ""
-
-#: app/views/admin.py:60
-msgid "Tag"
 msgstr ""
 
 #: app/views/admin.py:62
@@ -454,11 +478,15 @@ msgstr ""
 msgid "Password"
 msgstr ""
 
-#: app/views/auth.py:86
+#: app/views/auth.py:82
+msgid "Invalid Username or Password!"
+msgstr ""
+
+#: app/views/auth.py:90
 msgid "You have logged in!"
 msgstr ""
 
-#: app/views/auth.py:106
+#: app/views/auth.py:110
 msgid "You have logged out!"
 msgstr ""
 
