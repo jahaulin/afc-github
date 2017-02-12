@@ -187,6 +187,11 @@ pybabel 執行如有錯誤，建議先更新 setuptools。
 # sqlite3 app.db < ./sql/valid_selection_total_cost.sql
 ```
 
+各班級、各年級選課統計資訊。
+```
+# sqlite3 app.db < ./sql/valid_selection_groupby_gc.sql
+```
+
 ## 4. 參考資訊
   - HSIEH, Li-Yi @ [臺南市進學國小資訊組](http://www.chps.tn.edu.tw/)
   - All programs are released under the GPL.
