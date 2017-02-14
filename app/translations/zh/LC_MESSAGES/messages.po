@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-02-12 14:36+0800\n"
+"POT-Creation-Date: 2017-02-14 08:51+0800\n"
 "PO-Revision-Date: 2014-12-09 13:40+0800\n"
 "Last-Translator: HSIEH, Li-Yi <lyshie@tn.edu.tw>\n"
 "Language: zh\n"
@@ -478,6 +478,10 @@ msgstr "1、2、..."
 #: app/views/auth.py:31
 msgid "Password"
 msgstr "密碼"
+
+#: app/views/auth.py:31
+msgid "Last 4 digits"
+msgstr "身分證後四碼"
 
 #: app/views/auth.py:82
 msgid "Invalid Username or Password!"
