@@ -10,6 +10,36 @@ from wtforms import TextField, SelectField, PasswordField, SubmitField, HiddenFi
 from wtforms.validators import DataRequired
 from app.authenticator import StudentAuthenticator
 from flask_babel import gettext as _, lazy_gettext
+from datetime import datetime
+from functools import wraps
+
+'''
+    Date time constraint decorator
+'''
+
+
+def datetime_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        now = app.config.get('DATETIME_TZ').fromutc(datetime.utcnow())
+        if now < app.config.get('DATETIME_BEGIN'):
+            return error_page(errors=[lazy_gettext('This is not a registration time!'),
+                                      lazy_gettext(
+                                          'Begin time: ') + app.config.get('DATETIME_BEGIN').strftime("%F %T (%z)"),
+                                      lazy_gettext(
+                                          'End time: ') + app.config.get('DATETIME_END').strftime("%F %T (%z)"),
+                                      ])
+        elif now > app.config.get('DATETIME_END'):
+            return error_page(errors=[lazy_gettext('This is not a registration time!'),
+                                      lazy_gettext(
+                                          'Begin time: ') + app.config.get('DATETIME_BEGIN').strftime("%F %T (%z)"),
+                                      lazy_gettext(
+                                          'End time: ') + app.config.get('DATETIME_END').strftime("%F %T (%z)"),
+                                      ])
+        else:
+            return f(*args, **kwargs)
+
+    return decorated_function
 
 '''
     Forms
@@ -57,6 +87,7 @@ def error_page(error_title=lazy_gettext('Error'), errors=[]):
 
 
 @app.route("/login", methods=["GET", "POST"])
+@datetime_required
 def login():
     if g.user and g.user.is_authenticated:
         return redirect(url_for("index"))
