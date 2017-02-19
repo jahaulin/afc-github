@@ -142,6 +142,13 @@ def course():
 
     return render_template("course.html", courses=courses, selected=selected)
 
+
+@app.route("/course/list", methods=["GET"])
+def course_list():
+    courses = Course.query.order_by(Course.cid.asc()).all()
+
+    return render_template("course_list.html", courses=courses)
+
 '''
     Simple algorithm to check if courses overlapped
 

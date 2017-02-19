@@ -62,6 +62,8 @@ def set_locale():
     lang = request.args.get("lang")
     if lang and lang in ['zh', 'en']:
         session["lang"] = lang
+    else:
+        session["lang"] = 'zh'
 
 
 @babel.localeselector

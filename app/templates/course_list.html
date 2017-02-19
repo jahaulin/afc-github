@@ -1,0 +1,87 @@
+{% extends 'layout/mobile.html' %}
+{% block content %}
+<h2>{{ _('Course information') }}</h2>
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{ _('Course information') }}</h3>
+    </div>
+    <!-- panel-heading -->
+
+    <div class="panel-body">
+        <div class="media-list">
+        {% for c in courses %}
+
+            <div class="media" id="{{ c.cid }}">
+                 <div class="media-left">
+                    <img class="media-object img-rounded" src="{{ url_for('static', filename='images/flaticons/') }}{{ c.name | iconfilter }}.png">
+                </div>
+                <div class="media-body">
+                    <h3 class="media-heading">{{ c.name }}</h3>
+                    <dl class="dl-horizontal">
+                        <dt>課程資訊</dt>
+                        <dd>
+                            {{ c.classroom }} /
+                            <span class="text-info">{{ c.datetime | coursetimefilter }}</span>
+                        </dd>
+                        <dt>師資</dt>
+                        <dd>
+                            {{ c.teacher }} ({{ c.teacher_tag }}) /
+                            {{ c.teacher_phone }}
+                        </dd>
+                        <dt>資格限制</dt>
+                        <dd>
+                            {{ _('Grades') }} <span class="text-info">{{ c.grades | studenttagfilter }}</span> /
+                            NT${{ c.price | currencyfilter }}
+                        </dd>
+                        <dt>課程備註</dt>
+                        <dd>
+                            {{ c.description }}
+                        </dd>
+                    </dl>
+                </div>
+                <div class="media-right text-nowrap">
+                {% if c.state == 1 %}
+                    <p class="text-danger">{{ _('Suspended') }}</p>
+                {% else %}
+                {% endif %}
+
+                {% set count = c.selections.count() %}
+                {% if count < c.lowbound %}
+                    <br><span class="text-warning lead">{{ count }}</span>人
+                    <br>尚未成班
+                {% elif count > c.upbound %}
+                    <br><span class="text-danger lead">{{ count }}</span>人
+                    <br>已達成班
+                {% else %}
+                    <br><span class="text-default lead">{{ count }}</span>人
+                    <br>已達成班
+                {% endif %}
+                <br><span class="text-info">({{ c.lowbound }} ~ {{ c.upbound }})</span>
+                </div>
+            </div>
+
+        {% endfor %}
+        </div>
+    </div>
+    <!-- panel-body -->
+
+</div>
+
+<script type="text/javascript">
+jQuery.noConflict();
+(function($) {
+    $(function() {
+        // data table for sorting
+        $('#datatable').DataTable({
+            "paging": false,
+            "info": false, 
+            "language": {
+                search: '{{ _("Search in table:" )}}'
+            }
+        });
+    });
+})(jQuery);
+</script>
+
+{% endblock %}
