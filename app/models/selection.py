@@ -19,6 +19,9 @@ class Selection(db.Model):
     timestamp = db.Column(db.DateTime(timezone=True),       # 選擇時間紀錄
                           default=datetime.datetime.utcnow)
 
+    __table_args__ = (db.UniqueConstraint(
+        'user_id', 'course_id', name='unique_index_selection'), )
+
     def __init__(self, user_id=0, course_id=0, priority=0):
         self.user_id = user_id
         self.course_id = course_id
