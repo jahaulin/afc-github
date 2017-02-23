@@ -344,10 +344,10 @@ def admin_task_payment(uid=None, student_grade=None, student_class=None, student
 
             # lowbound <= counts, ranks <= upbound
             if counts[s.course_id] >= s.course.lowbound and ranks[s.course_id] <= s.course.upbound:
+                sels.append(s)
                 # may contain multiple datetimes
                 for dt in s.course.datetime.split(","):
                     weeks[int(dt[0])].append(dt)
-                    sels.append(s)
 
         for i in xrange(1, 8):
             weeks[i].sort()
