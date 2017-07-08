@@ -197,6 +197,21 @@ pybabel 執行如有錯誤，建議先更新 setuptools。
 # sqlite3 app.db < ./sql/valid_selection_groupby_gc.sql
 ```
 
+## 5. 使用 docker 配置
+```bash
+# docker pull danriti/nginx-gunicorn-flask
+# docker run -t -i danriti/nginx-gunicorn-flask /bin/bash
+935b9549c94f:/# apt-get install git vim
+935b9549c94f:/# cd /deploy
+935b9549c94f:/# git clone https://github.com/lyshie/afc-github
+935b9549c94f:/# cd /deploy/afc-github
+935b9549c94f:/# pip install --upgrade --user -r requirements.txt 
+935b9549c94f:/# vim /etc/supervisor/conf.d/gunicorn.conf
+[program:gunicorn]
+command=/usr/bin/gunicorn app:app -b localhost:5000
+directory=/deploy/afc-github
+```
+
 ## 4. 參考資訊
   - HSIEH, Li-Yi @ [臺南市進學國小資訊組](http://www.chps.tn.edu.tw/)
   - All programs are released under the GPL.
