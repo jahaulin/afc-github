@@ -210,6 +210,9 @@ pybabel 執行如有錯誤，建議先更新 setuptools。
 [program:gunicorn]
 command=/usr/bin/gunicorn app:app -b localhost:5000
 directory=/deploy/afc-github
+935b9549c94f:/# exit
+# docker commit -m "Added APP" -a "SHIE, Li-Yi" [BASE IMAGE ID]
+# docker run -t -i -p 80:80 [NEW IMAGE ID] /bin/bash
 ```
 
 ## 4. 參考資訊
