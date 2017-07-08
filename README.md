@@ -1,6 +1,7 @@
 # 課後社團報名系統 (afc-github)
 國小階段課後社團報名系統，提供學生家長線上報名使用。管理者可自行匯入「學生」與「課程」資料，進行編輯與管理；學生家長可線上進行「選課」。
 
+實際運作畫面 https://afc.chps.tn.edu.tw/
 
 ## 1. 系統資訊
   - GNU/Linux，如 CentOS、Fedora、Debian 等
@@ -198,6 +199,7 @@ pybabel 執行如有錯誤，建議先更新 setuptools。
 ```
 
 ## 5. 使用 docker 配置
+使用 nginx-gunicorn-flask
 ```bash
 # docker pull danriti/nginx-gunicorn-flask
 # docker run -t -i danriti/nginx-gunicorn-flask /bin/bash
@@ -213,6 +215,12 @@ directory=/deploy/afc-github
 935b9549c94f:/# exit
 # docker commit -m "Added APP" -a "SHIE, Li-Yi" [BASE IMAGE ID]
 # docker run -t -i -p 80:80 [NEW IMAGE ID] /bin/bash
+```
+
+使用 nginx-gunicorn-flask-afc
+```bash
+# docker pull lyshie/nginx-gunicorn-flask-afc
+# docker run -d -p 80:80 lyshie/nginx-gunicorn-flask-afc
 ```
 
 ## 4. 參考資訊
