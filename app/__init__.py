@@ -159,6 +159,7 @@ def iconfilter(value):
         {'rule': r'(素描)', 'icon': 'sketch'},
         {'rule': r'(油畫)', 'icon': 'paint-brush'},
         {'rule': r'(樹脂土)', 'icon': 'pottery-man'},
+        {'rule': r'(壘球|棒球)', 'icon': 'baseball'},
     ]
 
     for m in maps:

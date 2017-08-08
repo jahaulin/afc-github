@@ -39,7 +39,9 @@
                         </dd>
                         <dt>課程備註</dt>
                         <dd>
-                            {{ c.description }}
+                            {% autoescape false %}
+                            {{ c.description | safe }}
+                            {% endautoescape %}
                         </dd>
                     </dl>
                 </div>

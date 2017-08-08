@@ -48,8 +48,8 @@ class CourseEditForm(FlaskForm):
         lazy_gettext("Course"), validators=[DataRequired()], render_kw={'readonly': 'readonly'})
     name = TextField(
         lazy_gettext("Name"), validators=[DataRequired()])
-    description = StringField(
-        lazy_gettext("Description"), validators=[DataRequired()])
+    description = TextAreaField(
+        lazy_gettext("Description"), validators=[DataRequired()], render_kw={'rows': '4'})
     classroom = StringField(
         lazy_gettext("Classroom"), validators=[DataRequired()])
     price = IntegerField(
