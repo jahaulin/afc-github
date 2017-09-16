@@ -224,7 +224,7 @@ directory=/deploy/afc-github
 ```
 
 ## 5. 使用 virtualenv 配置
-[部署在臺南市飛番雲 IaaS 平台](https://github.com/lyshie/afc-github/edit/master/tn_iaas.md)
+[部署在臺南市飛番雲 IaaS 平台](https://github.com/lyshie/afc-github/blob/master/tn_iaas.md)
 
 ## 6. 參考資訊
   - HSIEH, Li-Yi @ [臺南市進學國小資訊組](http://www.chps.tn.edu.tw/)
