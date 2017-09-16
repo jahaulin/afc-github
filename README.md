@@ -198,7 +198,7 @@ pybabel 執行如有錯誤，建議先更新 setuptools。
 # sqlite3 app.db < ./sql/valid_selection_groupby_gc.sql
 ```
 
-## 5. 使用 docker 配置
+## 4. 使用 docker 配置
 使用 nginx-gunicorn-flask
 ```bash
 # docker pull danriti/nginx-gunicorn-flask
@@ -223,7 +223,10 @@ directory=/deploy/afc-github
 # docker run -d -p 80:80 lyshie/nginx-gunicorn-flask-afc
 ```
 
-## 4. 參考資訊
+## 5. 使用 virtualenv 配置
+[部署在臺南市飛番雲 IaaS 平台](https://github.com/lyshie/afc-github/edit/master/tn_iaas.md)
+
+## 6. 參考資訊
   - HSIEH, Li-Yi @ [臺南市進學國小資訊組](http://www.chps.tn.edu.tw/)
   - All programs are released under the GPL.
   - Free icons from [www.flaticon.com](http://www.flaticon.com/) is licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/)
